@@ -1521,7 +1521,7 @@ void JacoArmTrajectoryController::fingersCallback(const std_msgs::Float32::Const
 void JacoArmTrajectoryController::openCloseFingers(float value) {
 
 
-	cout << "Initializing the fingers" << endl;
+	//cout << "Initializing the fingers" << endl;
 	//InitFingers();
 
 	EraseAllTrajectories();
