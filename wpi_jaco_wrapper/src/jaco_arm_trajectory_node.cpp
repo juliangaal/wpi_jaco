@@ -51,32 +51,40 @@ JacoArmTrajectoryController::JacoArmTrajectoryController(ros::NodeHandle nh, ros
   // Initialize joint names
   if (arm_name_ == "jaco2")
   {
-    joint_names.push_back("jaco_shoulder_pan_joint");
-    joint_names.push_back("jaco_shoulder_lift_joint");
-    joint_names.push_back("jaco_elbow_joint");
-    joint_names.push_back("jaco_wrist_1_joint");
-    joint_names.push_back("jaco_wrist_2_joint");
-    joint_names.push_back("jaco_wrist_3_joint");
+    joint_names.push_back("jaco_joint_1");
+    joint_names.push_back("jaco_joint_2");
+    joint_names.push_back("jaco_joint_3");
+    joint_names.push_back("jaco_joint_4");
+    joint_names.push_back("jaco_joint_5");
+    joint_names.push_back("jaco_joint_6");
   }
   else
   {
-    for (int joint_id = 0; joint_id < NUM_JACO_JOINTS; ++joint_id)
-    {
-      stringstream joint_name_stream;
-      joint_name_stream << arm_name_ << "_joint_" << (joint_id + 1);
-      string joint_name = joint_name_stream.str();
-      joint_names.push_back(joint_name);
-    }
+		for (int joint_id = 0; joint_id < NUM_JACO_JOINTS; ++joint_id)
+		{
+			stringstream joint_name_stream;
+			joint_name_stream << arm_name_ << "_joint_" << (joint_id + 1);
+			string joint_name = joint_name_stream.str();
+			joint_names.push_back(joint_name);
+		}
   }
   if (kinova_gripper_)
   {
-    for (int finger_id = 0; finger_id < num_fingers_; ++finger_id)
-    {
-      stringstream finger_name_stream;
-      finger_name_stream << arm_name_ << "_joint_finger_" << (finger_id + 1);
-      string finger_name = finger_name_stream.str();
-      joint_names.push_back(finger_name);
-    }
+	if (arm_name_ == "jaco2")
+	{
+		joint_names.push_back("jaco_joint_finger_1");
+		joint_names.push_back("jaco_joint_finger_2");
+		joint_names.push_back("jaco_joint_finger_3");
+	}
+	else {
+		for (int finger_id = 0; finger_id < num_fingers_; ++finger_id)
+		{
+			stringstream finger_name_stream;
+			finger_name_stream << arm_name_ << "_joint_finger_" << (finger_id + 1);
+			string finger_name = finger_name_stream.str();
+			joint_names.push_back(finger_name);
+        }
+	}
   }
 
   StartControlAPI();
@@ -95,6 +103,8 @@ JacoArmTrajectoryController::JacoArmTrajectoryController(ros::NodeHandle nh, ros
                                         this);
   angularCmdSubscriber = nh.subscribe(topic_prefix_+"_arm/angular_cmd", 1, &JacoArmTrajectoryController::angularCmdCallback,
                                       this);
+
+  fingersSubscriber = nh.subscribe(topic_prefix_+"_arm/finger_cmd", 1, &JacoArmTrajectoryController::fingersCallback, this);
 
   // Services
   jaco_fk_client = nh.serviceClient<wpi_jaco_msgs::JacoFK>(topic_prefix_+"_arm/kinematics/fk");
@@ -803,6 +813,8 @@ void JacoArmTrajectoryController::execute_gripper(const control_msgs::GripperCom
 
   angularCmdPublisher.publish(cmd);
 
+  ROS_INFO("Beginning to move the fingers.");
+
   //give the fingers sufficient time to start moving, this prevents early termination if a command is slow to reach arm
   ros::Rate startupRate(1);
   startupRate.sleep();
@@ -1501,7 +1513,59 @@ bool JacoArmTrajectoryController::eraseTrajectoriesCallback(std_srvs::Empty::Req
   }
   return true;
 }
+
+void JacoArmTrajectoryController::fingersCallback(const std_msgs::Float32::ConstPtr& msg) {
+	openCloseFingers(msg->data);
 }
+
+void JacoArmTrajectoryController::openCloseFingers(float value) {
+
+
+	cout << "Initializing the fingers" << endl;
+	//InitFingers();
+
+	EraseAllTrajectories();
+
+    SetAngularControl();
+
+    FingersPosition fingers;
+    fingers.InitStruct();
+    memset(&fingers, 0, sizeof(fingers));
+
+    fingers.Finger1 = value;
+    fingers.Finger2 = value;
+    fingers.Finger3 = value;
+
+
+    TrajectoryPoint jaco_position;
+    jaco_position.InitStruct();
+    memset(&jaco_position, 0, sizeof(jaco_position));
+
+    // Initialize Cartesian control of the fingers
+    jaco_position.Position.HandMode = POSITION_MODE;
+    jaco_position.Position.Type = ANGULAR_POSITION;
+    jaco_position.Position.Fingers = fingers;
+    jaco_position.Position.Delay = 0.0;
+    jaco_position.LimitationsActive = 0;
+
+    AngularPosition jaco_angles;
+    memset(&jaco_angles, 0, sizeof(jaco_angles));  // zero structure
+
+    GetAngularPosition(jaco_angles);
+    jaco_position.Position.Actuators = jaco_angles.Actuators;
+
+    // When loading a cartesian position for the fingers, values are required for the arm joints
+    // as well or the arm goes nuts.  Grab the current position and feed it back to the arm.
+    CartesianPosition pose;
+    GetCartesianPosition(pose);
+    jaco_position.Position.CartesianPosition = pose.Coordinates;
+
+    SendAdvanceTrajectory(jaco_position);
+
+}
+
+}
+
 
 int main(int argc, char** argv)
 {

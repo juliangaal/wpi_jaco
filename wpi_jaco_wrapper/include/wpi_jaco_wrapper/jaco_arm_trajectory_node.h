@@ -31,6 +31,7 @@
 #include <wpi_jaco_msgs/QuaternionToEuler.h>
 #include <sensor_msgs/JointState.h>
 #include <std_msgs/Bool.h>
+#include <std_msgs/Float32.h>
 #include <std_srvs/Empty.h>
 
 #include <jaco_sdk/Kinova.API.UsbCommandLayerUbuntu.h>
@@ -165,6 +166,10 @@ private:
   */
   void fingerPositionControl(float f1, float f2, float f3);
 
+  void openCloseFingers(float value);
+
+  void fingersCallback(const std_msgs::Float32::ConstPtr& msg);
+
   /**
    *\brief Stripped-down angular trajectory point sending to the arm
    *
@@ -223,6 +228,8 @@ private:
   * @param res empty service response
   */
   bool eraseTrajectoriesCallback(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res);
+
+  ros::Subscriber fingersSubscriber;
 
   // Messages
   ros::Publisher joint_state_pub_; //!< publisher for joint states
