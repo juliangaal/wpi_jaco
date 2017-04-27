@@ -25,7 +25,7 @@ JacoArmTrajectoryController::JacoArmTrajectoryController(ros::NodeHandle nh, ros
   }
 
   boost::recursive_mutex::scoped_lock lock(api_mutex);
-
+1
   // ROS_INFO("Trying to initialize JACO API...");
   while ( InitAPI() != NO_ERROR )
   {
@@ -813,7 +813,7 @@ void JacoArmTrajectoryController::execute_gripper(const control_msgs::GripperCom
 
   angularCmdPublisher.publish(cmd);
 
-  ROS_INFO("Beginning to move the fingers.");
+  //ROS_INFO("Beginning to move the fingers.");
 
   //give the fingers sufficient time to start moving, this prevents early termination if a command is slow to reach arm
   ros::Rate startupRate(1);
@@ -1520,12 +1520,9 @@ void JacoArmTrajectoryController::fingersCallback(const std_msgs::Float32::Const
 
 void JacoArmTrajectoryController::openCloseFingers(float value) {
 
-
-	//cout << "Initializing the fingers" << endl;
-	//InitFingers();
+	boost::recursive_mutex::scoped_lock lock(api_mutex);
 
 	EraseAllTrajectories();
-
     SetAngularControl();
 
     FingersPosition fingers;
