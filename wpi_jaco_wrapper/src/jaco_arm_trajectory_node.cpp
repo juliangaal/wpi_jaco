@@ -25,7 +25,6 @@ JacoArmTrajectoryController::JacoArmTrajectoryController(ros::NodeHandle nh, ros
   }
 
   boost::recursive_mutex::scoped_lock lock(api_mutex);
-1
   // ROS_INFO("Trying to initialize JACO API...");
   while ( InitAPI() != NO_ERROR )
   {
