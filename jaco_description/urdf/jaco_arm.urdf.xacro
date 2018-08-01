@@ -471,7 +471,7 @@
         <xacro:jaco_transmission joint_name="${joint_1}" />
         
 		<xacro:jaco_link_with_collisions link_name="${link_2}" simple_collisions="${simple_collisions}"><xacro:insert_block name="link_2_link_data" /></xacro:jaco_link_with_collisions>
-		<xacro:jaco_joint joint_name="${joint_2}" type="revolute" parent="${link_1}" child="${link_2}" joint_axis_xyz="${joint_2_axis_xyz}" joint_origin_xyz="${joint_2_origin_xyz}" joint_origin_rpy="${joint_2_origin_rpy}" lower_limit="0" upper_limit="${J_LIM}" />
+		<xacro:jaco_joint joint_name="${joint_2}" type="revolute" parent="${link_1}" child="${link_2}" joint_axis_xyz="${joint_2_axis_xyz}" joint_origin_xyz="${joint_2_origin_xyz}" joint_origin_rpy="${joint_2_origin_rpy}" lower_limit="1.6" upper_limit="4.5" />
         <xacro:jaco_transmission joint_name="${joint_2}" />
         
 		<xacro:jaco_link_with_collisions link_name="${link_3}" simple_collisions="${simple_collisions}"><xacro:insert_block name="link_3_link_data" /></xacro:jaco_link_with_collisions>
