@@ -29,6 +29,30 @@
         <joint name="jaco_joint_5" value="-0.0748" />
         <joint name="jaco_joint_6" value="-0.2244" />
     </group_state>
+    <group_state name="home" group="arm">
+        <joint name="jaco_joint_1" value="-1.4777284340765515" />
+        <joint name="jaco_joint_2" value="2.922250178837014" />
+        <joint name="jaco_joint_3" value="1.002455512776885" />
+        <joint name="jaco_joint_4" value="-2.0781194597072847" />
+        <joint name="jaco_joint_5" value="1.4535101797555887" />
+        <joint name="jaco_joint_6" value="1.324035277039206" />
+    </group_state>
+    <group_state name="joint_state_1" group="arm">
+        <joint name="jaco_joint_1" value="-2.6435937802859897" />
+        <joint name="jaco_joint_2" value="2.478897506888874" />
+        <joint name="jaco_joint_3" value="1.680057969995632" />
+        <joint name="jaco_joint_4" value="-2.0813597278055846" />
+        <joint name="jaco_joint_5" value="1.451960752633381" />
+        <joint name="jaco_joint_6" value="1.0931317536782839" />
+    </group_state>
+    <group_state name="joint_state_2" group="arm">
+        <joint name="jaco_joint_1" value="1.585543847647319" />
+        <joint name="jaco_joint_2" value="3.6586240739399565" />
+        <joint name="jaco_joint_3" value="1.611072909856819" />
+        <joint name="jaco_joint_4" value="-2.08099301052348" />
+        <joint name="jaco_joint_5" value="1.4495782887221962" />
+        <joint name="jaco_joint_6" value="-0.08904865000119777" />
+    </group_state>
     <group_state name="open" group="gripper">
         <joint name="jaco_joint_finger_1" value="0" />
         <joint name="jaco_joint_finger_2" value="0" />
