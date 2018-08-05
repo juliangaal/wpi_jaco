@@ -1,4 +1,4 @@
-#include <wpi_jaco_wrapper/jaco_manipulation.h>
+#include <wpi_jaco_wrapper/jaco_manipulation_server.h>
 
 using namespace std;
 

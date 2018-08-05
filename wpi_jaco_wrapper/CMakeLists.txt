@@ -35,7 +35,7 @@ target_link_libraries(jaco_arm_trajectory_node
 add_dependencies(jaco_arm_trajectory_node wpi_jaco_msgs_gencpp)
 
 ## Declare a cpp executable
-add_executable(jaco_manipulation src/jaco_manipulation.cpp)
+add_executable(jaco_manipulation src/jaco_manipulation_server.cpp)
 ## Specify libraries to link a library or executable target against
 target_link_libraries(jaco_manipulation
   ${catkin_LIBRARIES}
