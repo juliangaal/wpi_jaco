@@ -37,6 +37,14 @@
         <joint name="jaco_joint_5" value="1.4535101797555887" />
         <joint name="jaco_joint_6" value="1.324035277039206" />
     </group_state>
+    <group_state name="grasp_joint_state_home" group="arm">
+        <joint name="jaco_joint_1" value="-1.70165341011703" />
+        <joint name="jaco_joint_2" value="4.099889360225693" />
+        <joint name="jaco_joint_3" value="1.237485604246885" />
+        <joint name="jaco_joint_4" value="-0.30144127299427864" />
+        <joint name="jaco_joint_5" value="0.39478699999334665" />
+        <joint name="jaco_joint_6" value="1.4133624936904265" />
+    </group_state>
     <group_state name="joint_state_1" group="arm">
         <joint name="jaco_joint_1" value="-2.6435937802859897" />
         <joint name="jaco_joint_2" value="2.478897506888874" />
