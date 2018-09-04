@@ -21,7 +21,7 @@ catkin_package()
 
 ## Specify additional locations of header files
 include_directories(
-  include
+    include
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -49,11 +49,11 @@ install(DIRECTORY include/${PROJECT_NAME}/
 )
 
 ## Copy launch files
-install(DIRECTORY launch/
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
-)
+install(DIRECTORY launch
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+        )
 
 ## Install RVIZ configurations
 install(DIRECTORY rviz
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/rviz
-)
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/rviz
+        )

@@ -20,21 +20,21 @@ catkin_package()
 #############
 
 ## Copy launch files
-install(DIRECTORY launch/
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
-)
+install(DIRECTORY launch
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+        )
 
 ## Install meshes
-install(DIRECTORY meshes/
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes
-)
+install(DIRECTORY meshes
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes
+        )
 
 ## Install URDF files
-install(DIRECTORY urdf/
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf
-)
+install(DIRECTORY urdf
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf
+        )
 
 ## Install rviz files
-install(DIRECTORY rviz/
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/rviz
-)
+install(DIRECTORY rviz
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/rviz
+        )
