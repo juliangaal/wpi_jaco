@@ -51,6 +51,11 @@ public:
   JacoManipulation();
 
   /**
+   * Destructor
+   */
+  ~JacoManipulation();
+
+  /**
    * \brief Callback for the executeGraspServer, closes the gripper until an object is grasped, alternatively opens the gripper fully
    * @param goal action goal
    */

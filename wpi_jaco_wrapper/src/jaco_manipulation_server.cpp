@@ -37,6 +37,23 @@ JacoManipulation::JacoManipulation() : pnh("~")
   asLift->start();
 }
 
+JacoManipulation::~JacoManipulation() {
+  if (acGripper != nullptr) {
+    delete acGripper;
+    acGripper = nullptr;
+  }
+
+  if (asGripper != nullptr) {
+    delete asGripper;
+    asGripper = nullptr;
+  }
+
+  if (asLift != nullptr) {
+    delete asLift;
+    asLift = nullptr;
+  }
+}
+
 bool JacoManipulation::loadParameters(const ros::NodeHandle n)
 {
     ROS_DEBUG("Loading parameters");

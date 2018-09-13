@@ -143,6 +143,41 @@ JacoArmTrajectoryController::~JacoArmTrajectoryController()
 {
   StopControlAPI();
   CloseAPI();
+
+  if (trajectory_server_ != nullptr) {
+    delete trajectory_server_;
+    trajectory_server_ = nullptr;
+  }
+
+  if (smooth_trajectory_server_ != nullptr) {
+    delete smooth_trajectory_server_;
+    smooth_trajectory_server_ = nullptr;
+  }
+
+  if (smooth_joint_trajectory_server_ != nullptr) {
+    delete smooth_joint_trajectory_server_;
+    smooth_joint_trajectory_server_ = nullptr;
+  }
+
+  if (gripper_server_ != nullptr) {
+    delete gripper_server_;
+    gripper_server_ = nullptr;
+  }
+
+  if (gripper_server_radian_ != nullptr) {
+    delete gripper_server_radian_;
+    gripper_server_radian_ = nullptr;
+  }
+
+  if (home_arm_server_ != nullptr) {
+    delete home_arm_server_;
+    home_arm_server_ = nullptr;
+  }
+
+  if (gripper_client_ != nullptr) {
+    delete gripper_client_;
+    gripper_client_ = nullptr;
+  }
 }
 
 /** Adjust angle to equivalent angle on [-pi, pi]
