@@ -127,6 +127,7 @@
     <disable_collisions link1="jaco_link_1" link2="jaco_link_base" reason="Adjacent" />
     <disable_collisions link1="jaco_link_1" link2="jaco_small_ring_cover_1" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="jaco_small_ring_cover_3" reason="Default" />
+    <disable_collisions link1="jaco_link_1" link2="jaco_large_ring_cover_2" reason="Adjacent" />
     <disable_collisions link1="jaco_link_1" link2="root" reason="Never" />
     <disable_collisions link1="jaco_link_2" link2="jaco_link_3" reason="Adjacent" />
     <disable_collisions link1="jaco_link_2" link2="jaco_link_4" reason="Default" />
