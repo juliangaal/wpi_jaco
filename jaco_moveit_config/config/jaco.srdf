@@ -99,8 +99,6 @@
     <disable_collisions link1="jaco_large_ring_cover_2" link2="jaco_link_4" reason="Never" />
     <disable_collisions link1="jaco_large_ring_cover_2" link2="jaco_link_5" reason="Never" />
     <disable_collisions link1="jaco_large_ring_cover_2" link2="jaco_link_base" reason="Never" />
-    <disable_collisions link1="jaco_large_ring_cover_2" link2="jaco_link_finger_1" reason="Default" />
-    <disable_collisions link1="jaco_large_ring_cover_2" link2="jaco_link_hand" reason="Default" />
     <disable_collisions link1="jaco_large_ring_cover_2" link2="jaco_small_ring_cover_1" reason="Never" />
     <disable_collisions link1="jaco_large_ring_cover_2" link2="jaco_small_ring_cover_2" reason="Never" />
     <disable_collisions link1="jaco_large_ring_cover_2" link2="root" reason="Never" />
